@@ -35,11 +35,14 @@ class RNKochavaModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void init(Promise promise) {
+    public void init(ReadableMap options, Promise promise) {
         try {
-            Feature.enableDebug(true);
+            if (options.getBoolean("enableDebug")) {
+              Feature.enableDebug(true);
+            }
             HashMap<String, Object> datamap = new HashMap<String, Object>();
-            datamap.put(Feature.INPUTITEMS.KOCHAVA_APP_ID ,"komidata-android-test-7aarb" );
+
+            datamap.put(Feature.INPUTITEMS.KOCHAVA_APP_ID , options.getString("appId"));
             datamap.put(Feature.INPUTITEMS.REQUEST_ATTRIBUTION, true);
             kTracker = new Feature( this.context , datamap);
 

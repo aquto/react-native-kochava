@@ -3,8 +3,8 @@ import React from 'react-native';
 const RNKochava = React.NativeModules.RNKochava;
 
 export default {
-  init: () => {
-    return RNKochava.init();
+  init: (options) => {
+    return RNKochava.init(options);
   },
   identityLink: (identity) => {
     return RNKochava.identityLink(identity);
